@@ -13,6 +13,7 @@ from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
 import tiktoken
 import json
+import os
 
 def main():
     load_dotenv()
@@ -36,9 +37,9 @@ def main():
         unsafe_allow_html=True,
     )
     st.markdown("<h1 class='header'>Ask your DOLE BOT 💬</h1>", unsafe_allow_html=True)
-
+    
     # Authenticate and create Google Drive service
-    credentials_json_path = r"C:\Users\Mark Lumba\Documents\Python projects\google json credentials.json"
+    credentials_json_path = os.getenv("GOOGLE_CREDENTIALS_JSON_PATH")
     with open(credentials_json_path) as f:
         service_account_info = json.load(f)
 
@@ -47,6 +48,7 @@ def main():
         scopes=['https://www.googleapis.com/auth/drive.readonly']
     )
     drive_service = build('drive', 'v3', credentials=credentials)
+
 
     # Upload file from Google Drive
     drive_file_id = "14U7paDJntd7fOW6WPW2XwXV7NLy1lP8s"  # Replace with the actual Google Drive file ID
