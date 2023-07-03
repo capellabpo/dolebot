@@ -45,7 +45,7 @@ def query_refiner(conversation, query):
         frequency_penalty=0,
         presence_penalty=0
     )
-    return response['choices'][0]['text']
+    return response['choices'][0]['text']                                                                                                                                                                                                                                                                   
 
 
 def get_conversation_string():
