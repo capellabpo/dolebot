@@ -39,7 +39,7 @@ documents = load_documents()
 split_documents = split_docs(documents)
 print(len(split_documents))
 
-# Continue with the remaining code
+# Create the embeddings
 embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
 
 pinecone.init(
