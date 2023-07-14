@@ -7,7 +7,7 @@ from langchain.prompts import (
     HumanMessagePromptTemplate,
     ChatPromptTemplate,
     MessagesPlaceholder
-)
+)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 import streamlit as st
 from streamlit_chat import message
 from utils import *
@@ -38,7 +38,7 @@ if 'responses' not in st.session_state:
 if 'requests' not in st.session_state:
     st.session_state['requests'] = []
 
-llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=openai_api_key)
+llm = ChatOpenAI(model_name="gpt-3.5-turbo-16k", openai_api_key=openai_api_key)
 
 if 'buffer_memory' not in st.session_state:
             st.session_state.buffer_memory=ConversationBufferWindowMemory(k=3,return_messages=True)
@@ -73,7 +73,7 @@ with textcontainer:
             st.write(refined_query)
             context = find_match(refined_query)
             # print(context) 
-
+            
 
             with get_openai_callback() as cb:
                response = conversation.predict(input=f"Context:\n {context} \n\n Query:\n{query}")
@@ -91,5 +91,10 @@ with response_container:
             message(st.session_state['responses'][i],key=str(i))
             if i < len(st.session_state['requests']):
                 message(st.session_state["requests"][i], is_user=True,key=str(i)+ '_user')
+
+
+
+
+
 
 
